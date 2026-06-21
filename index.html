@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعدل الأكاديمي - جامعة مصر للعلوم والتكنولوجيا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #107c41;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --bg-gray: #f8fafc;
+            --border-color: #eaeaea;
+            --modal-blue: #2b6cb0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .phone-canvas {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #f8fafc;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.05rem;
+        }
+        .nav-right svg {
+            width: 22px;
+            height: 22px;
+            fill: #1a202c;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-muted);
+        }
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .main-content {
+            padding: 15px 20px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* حاوية اللوجو الأصلي الملون المدمج */
+        .university-logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 10px auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .university-logo-container svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .uni-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        .gpa-label-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        .student-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 25px;
+        }
+
+        .table-wrapper {
+            background: rgba(248, 249, 250, 0.7);
+            border-radius: 16px;
+            padding: 5px 8px;
+            border: 1px solid #f1f5f9;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 12px 4px;
+            text-align: center;
+        }
+        td {
+            padding: 14px 4px;
+            font-size: 0.95rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        tr:not(:last-child) td {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .btn-details {
+            background: transparent;
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 4px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-details:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .gpa-summary {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .gpa-summary h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        .gpa-number {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 2px 0;
+        }
+        .gpa-status {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+        .gpa-text-details {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .gpa-text-details span {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .footer-logo-area {
+            margin-top: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .footer-logo-area svg {
+            width: 24px;
+            height: 24px;
+            fill: #1a202c;
+        }
+
+        /* تصميم الـ Details */
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .modal-mask.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-body {
+            background: #f4f6f9;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .modal-mask.show .modal-body {
+            transform: translateY(0);
+        }
+        
+        .modal-header-text {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .modal-header-text h3 {
+            font-size: 1.3rem;
+            font-family: Arial, sans-serif;
+            color: #000;
+            font-weight: bold;
+        }
+        .modal-header-text p {
+            font-size: 0.9rem;
+            color: #777;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e2e8f0;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+        }
+
+        .circle-chart-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 10px auto 15px auto;
+        }
+        .circle-chart {
+            transform: rotate(-90deg);
+            width: 150px;
+            height: 150px;
+        }
+        .circle-bg {
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 10;
+        }
+        .circle-fill-bar {
+            fill: none;
+            stroke: #2b6cb0;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 439.82;
+            stroke-dashoffset: 439.82;
+            transition: stroke-dashoffset 0.8s ease-in-out;
+        }
+        .circle-inner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .circle-inner-text .grade {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2b6cb0;
+            display: block;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+        }
+        .circle-inner-text .percent {
+            font-size: 1rem;
+            color: #555;
+            font-family: Arial, sans-serif;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .overall-capsule {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 8px 20px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border: 1px solid #e8e8e8;
+        }
+        .overall-capsule p {
+            font-size: 0.75rem;
+            color: #777;
+            margin-bottom: 2px;
+        }
+        .overall-capsule div {
+            font-family: Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+
+        .score-row-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eef0f5;
+            text-align: left;
+        }
+        .score-card-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .score-icon-box {
+            width: 36px;
+            height: 36px;
+            background: #e9f0f8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-icon-box svg {
+            width: 18px;
+            height: 18px;
+            fill: #2b6cb0;
+        }
+        .score-title-txt {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #111;
+        }
+        .score-badge-value {
+            border-radius: 15px;
+            padding: 4px 14px;
+            font-family: Arial, sans-serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .blue-badge {
+            background: #e9f0f8;
+            color: #2b6cb0;
+        }
+        .green-badge {
+            background: #e6f4ea;
+            color: #137333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-canvas">
+    <div class="top-navbar">
+        <div class="nav-right">
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 9l11 7 9-5.73V17h2V9L12 2z"/></svg>
+            <span>المعدل الأكاديمي</span>
+        </div>
+        <div class="nav-left">
+            <svg style="width:18px; height:18px; fill:#6b7280;" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <svg style="width:18px; height:18px; fill:#6b7280;" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-7h-2v3h2v-3zm7.45 3.95l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zM11 16.5h2v3h-2v-3zm7.45 2.66l1.79 1.79 1.41-1.41-1.79-1.79-1.41 1.41zm-14.9 0l1.41 1.41 1.79-1.79-1.41-1.41-1.79 1.79zM20 10.5v2h3v-2h-3zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"/></svg>
+            <div class="lang-selector">
+                <svg style="width:12px; height:12px; fill:#333;" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                <span>Arabic</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="university-logo-container">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="100" r="85" fill="none" stroke="#1d2d6b" stroke-width="2.5"/>
+                <circle cx="100" cy="100" r="72" fill="none" stroke="#1d2d6b" stroke-width="1"/>
+                
+                <path id="textPathTop" d="M 24,100 A 76,76 0 0,1 176,100" fill="none"/>
+                <text font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#1d2d6b" letter-spacing="1">
+                    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">MISR UNIVERSITY FOR SCIENCE & TECHNOLOGY</textPath>
+                </text>
+
+                <path id="textPathBottom" d="M 174,100 A 74,74 0 0,1 26,100" fill="none"/>
+                <text font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="bold" fill="#1d2d6b" letter-spacing="0.5">
+                    <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">KNOWLEDGE IS POWER</textPath>
+                </text>
+
+                <g fill="#0ba854">
+                    <path d="M 52,118 L 148,118 L 148,124 L 52,124 Z"/> 
+                    <path d="M 55,90 L 145,90 L 145,94 L 55,94 Z"/>
+                    <rect x="58" y="94" width="5" height="24"/>
+                    <rect x="67" y="94" width="5" height="24"/>
+                    <rect x="76" y="94" width="5" height="24"/>
+                    <rect x="85" y="94" width="5" height="24"/>
+                    <rect x="94" y="94" width="12" height="24"/> <rect x="110" y="94" width="5" height="24"/>
+                    <rect x="119" y="94" width="5" height="24"/>
+                    <rect x="128" y="94" width="5" height="24"/>
+                    <rect x="137" y="94" width="5" height="24"/>
+                    <polygon points="52,90 148,90 100,68"/>
+                </g>
+                
+                <text x="100" y="148" font-family="'Arial Black', Gadget, sans-serif" font-size="20" font-weight="900" fill="#1d2d6b" text-anchor="middle">MUST</text>
+            </svg>
+        </div>
+        
+        <div class="uni-title">جامعة مصر للعلوم والتكنولوجيا</div>
+        <div class="gpa-label-sub">المعدل التراكمي للطالب/ة</div>
+        <div class="student-name">أحمد هشام علي الشريف</div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>اسم المادة</th>
+                        <th>عدد الساعات</th>
+                        <th>الدرجة</th>
+                        <th>التقدير</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="main-table-rows"></tbody>
+            </table>
+        </div>
+
+        <div class="gpa-summary">
+            <h4>معدل الفصل الدراسي الحالي</h4>
+            <div class="gpa-number">2.60</div>
+            <div class="gpa-status">جيد</div>
+            <div class="gpa-text-details">
+                معدلك المقدر لهذا الفصل هو <span>68.75%</span> <br>
+                مع إجمالي <span>15</span> ساعة دراسية
+            </div>
+        </div>
+
+        <div class="footer-logo-area">
+            <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+            <div>المعدل الأكاديمي</div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-mask" id="popup-modal">
+    <div class="modal-body">
+        <button class="btn-close-modal" onclick="hideDetailsPopup()">&times;</button>
+        <div class="modal-header-text">
+            <h3 id="lbl-course-code">ACC102</h3>
+            <p id="lbl-course-hours">3 Credit Hours</p>
+        </div>
+        <div class="circle-chart-container">
+            <svg class="circle-chart">
+                <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
+                <circle class="circle-fill-bar" id="circle-bar-element" cx="75" cy="75" r="70"></circle>
+            </svg>
+            <div class="circle-inner-text">
+                <span class="grade" id="lbl-grade">B+</span>
+                <span class="percent" id="lbl-percentage">81%</span>
+            </div>
+        </div>
+        <div class="overall-capsule">
+            <p>Overall Score</p>
+            <div id="val-overall">121 / 150</div>
+        </div>
+        <div class="score-row-card">
+            <div class="score-card-right">
+                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
+                <span class="score-title-txt">MT</span>
+            </div>
+            <span class="score-badge-value blue-badge" id="val-mt">29 / 40</span>
+        </div>
+        <div class="score-row-card">
+            <div class="score-card-right">
+                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z/></svg></div>
+                <span class="score-title-txt">CW</span>
+            </div>
+            <span class="score-badge-value green-badge" id="val-cw">17 / 20</span>
+        </div>
+        <div class="score-row-card">
+            <div class="score-card-right">
+                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></div>
+                <span class="score-title-txt">FIN</span>
+            </div>
+            <span class="score-badge-value blue-badge" id="val-final">75 / 90</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const studentCourses = [
+        { code: "BUS103", hours: 3, grade: "A", status: "ناجح", percentage: 94, scores: { overall: "141 / 150", mt: "38 / 40", cw: "19 / 20", final: "84 / 90" } },
+        { code: "BUS102", hours: 3, grade: "-A", status: "ناجح", percentage: 86, scores: { overall: "129 / 150", mt: "34 / 40", cw: "18 / 20", final: "77 / 90" } },
+        { code: "ACC102", hours: 3, grade: "+B", status: "ناجح", percentage: 81, scores: { overall: "121 / 150", mt: "29 / 40", cw: "17 / 20", final: "75 / 90" } },
+        { code: "ECO101", hours: 3, grade: "D", status: "ناجح", percentage: 60, scores: { overall: "90 / 150", mt: "22 / 40", cw: "13 / 20", final: "55 / 90" } },
+        { code: "MATH101", hours: 3, grade: "D", status: "ناجح", percentage: 62, scores: { overall: "93 / 150", mt: "24 / 40", cw: "11 / 20", final: "58 / 90" } }
+    ];
+
+    function buildTable() {
+        const tableBody = document.getElementById('main-table-rows');
+        tableBody.innerHTML = '';
+        studentCourses.forEach((item, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="font-family: Arial, sans-serif; font-weight: bold; color: #111827;">${item.code}</td>
+                <td style="color: #4b5563;">${item.hours}</td>
+                <td style="font-family: Arial, sans-serif; font-weight: 600; color: #111827;">${item.grade}</td>
+                <td style="color: #111827;">${item.status}</td>
+                <td><button class="btn-details" onclick="showDetailsPopup(${idx})">details</button></td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    }
+
+    function showDetailsPopup(idx) {
+        const data = studentCourses[idx];
+        document.getElementById('lbl-course-code').innerText = data.code;
+        document.getElementById('lbl-course-hours').innerText = `${data.hours} Credit Hours`;
+        document.getElementById('lbl-grade').innerText = data.grade;
+        document.getElementById('lbl-percentage').innerText = `${data.percentage}%`;
+        document.getElementById('val-overall').innerText = data.scores.overall;
+        document.getElementById('val-mt').innerText = data.scores.mt;
+        document.getElementById('val-cw').innerText = data.scores.cw;
+        document.getElementById('val-final').innerText = data.scores.final;
+
+        const r = 70;
+        const circumference = 2 * Math.PI * r;
+        const offset = circumference - (data.percentage / 100) * circumference;
+        const bar = document.getElementById('circle-bar-element');
+        bar.style.strokeDasharray = circumference;
+        bar.style.strokeDashoffset = circumference;
+
+        document.getElementById('popup-modal').classList.add('show');
+        setTimeout(() => { bar.style.strokeDashoffset = offset; }, 50);
+    }
+
+    function hideDetailsPopup() { document.getElementById('popup-modal').classList.remove('show'); }
+    window.onclick = function(e) { if (e.target == document.getElementById('popup-modal')) { hideDetailsPopup(); } }
+    window.onload = buildTable;
+</script>
+</body>
+</html>
