@@ -202,10 +202,6 @@
             color: var(--text-muted);
             line-height: 1.6;
         }
-        .gpa-text-details span {
-            color: var(--primary-green);
-            font-weight: 700;
-        }
 
         .footer-logo-area {
             margin-top: 35px;
@@ -222,7 +218,7 @@
             fill: #1a202c;
         }
 
-        /* نافذة المودال الكبيرة */
+        /* نافذة المودال */
         .modal-mask {
             position: fixed;
             top: 0;
@@ -280,7 +276,7 @@
             z-index: 10;
         }
 
-        /* هيدر تطبيق MUSTER الأزرق الغامق */
+        /* هيدر MUSTER الأزرق الغامق */
         .muster-header {
             background: var(--muster-blue);
             padding: 15px 20px;
@@ -333,7 +329,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* كونتنت كروت التطبيق المتطابقة */
+        /* كونتنت كروت التطبيق */
         .muster-content-container {
             padding: 15px;
             display: flex;
@@ -341,7 +337,7 @@
             gap: 12px;
         }
 
-        /* كارت الطالب الرئيسي العلوي */
+        /* كارت الطالب الرئيسي العلوي مع دعم الصورة */
         .muster-student-main-card {
             background: white;
             border-radius: 12px;
@@ -360,6 +356,7 @@
             border: 1px solid #e2e8f0;
             background: #edf2f7;
             overflow: hidden;
+            flex-shrink: 0;
         }
         .muster-avatar-wrapper img {
             width: 100%;
@@ -520,7 +517,7 @@
         .muster-progress-bar-fill {
             height: 100%;
             background: var(--muster-blue);
-            width: 31%; /* حساب نسبة 27 من 87 */
+            width: 31%;
             border-radius: 4px;
         }
         .muster-current-semester-line {
@@ -540,7 +537,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* كارت الرصيد المالي المخصص */
+        /* الموقف المالي الحالي */
         .balance-flex-row {
             display: flex;
             justify-content: space-between;
@@ -549,7 +546,7 @@
         .balance-left-val {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #9b2c2c;
+            color: #137333; /* تم التعديل للون الأخضر طالما الرصيد صفر */
             font-family: Arial, sans-serif;
         }
         .balance-left-val span {
@@ -557,22 +554,8 @@
             color: var(--text-muted);
             margin-right: 3px;
         }
-        .btn-muster-details-link {
-            background: transparent;
-            border: 1px solid #e2e8f0;
-            border-radius: 15px;
-            padding: 2px 12px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-        }
 
-        /* كارت التيست والـ Contacts */
-        .placement-test-orange-bar {
-            background: #dd6b20 !important;
-            width: 54.2% !important; /* نسبة 38 من 70 */
-        }
+        /* اختبار تحديد المستوى */
         .placement-orange-badge {
             background: #fff5f5;
             border: 1px solid #fbd38d;
@@ -671,7 +654,7 @@
         }
         .circle-fill-bar {
             fill: none;
-            stroke: #2b6cb0;
+            stroke: #107c41;
             stroke-width: 10;
             stroke-linecap: round;
             stroke-dasharray: 439.82;
@@ -688,7 +671,7 @@
         .circle-inner-text .grade {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #2b6cb0;
+            color: #107c41;
             display: block;
             font-family: Arial, sans-serif;
             line-height: 1;
@@ -719,7 +702,7 @@
             font-family: Arial, sans-serif;
             font-size: 0.95rem;
             font-weight: bold;
-            color: #2b6cb0;
+            color: #107c41;
         }
 
         .score-row-card {
@@ -741,7 +724,7 @@
         .score-icon-box {
             width: 36px;
             height: 36px;
-            background: #e9f0f8;
+            background: #e6f4ea;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -750,7 +733,7 @@
         .score-icon-box svg {
             width: 18px;
             height: 18px;
-            fill: #2b6cb0;
+            fill: #107c41;
         }
         .score-title-txt {
             font-weight: bold;
@@ -833,22 +816,46 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>ACC101</td>
+                        <td>Financial Accounting 1</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">B</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Financial Accounting 1', 'B', 82, 33)">عرض</button></td>
+                    </tr>
+                    <tr>
                         <td>ACC102</td>
                         <td>Financial Accounting 2</td>
                         <td style="color: var(--primary-green); font-weight: bold;">B+</td>
-                        <td><button class="btn-details" onclick="showSubjectDetails('Financial Accounting 2', 'B+', 86, 280)">عرض</button></td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Financial Accounting 2', 'B+', 88, 38)">عرض</button></td>
                     </tr>
                     <tr>
                         <td>MGT101</td>
                         <td>Principles of Management</td>
                         <td style="color: var(--primary-green); font-weight: bold;">C</td>
-                        <td><button class="btn-details" onclick="showSubjectDetails('Principles of Management', 'C', 73, 220)">عرض</button></td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Principles of Management', 'C', 72, 22)">عرض</button></td>
                     </tr>
                     <tr>
                         <td>ECO101</td>
                         <td>Macroeconomics</td>
                         <td style="color: var(--primary-green); font-weight: bold;">B</td>
-                        <td><button class="btn-details" onclick="showSubjectDetails('Macroeconomics', 'B', 81, 260)">عرض</button></td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Macroeconomics', 'B', 80, 31)">عرض</button></td>
+                    </tr>
+                    <tr>
+                        <td>MATH101</td>
+                        <td>Business Mathematics</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">A</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Business Mathematics', 'A', 94, 44)">عرض</button></td>
+                    </tr>
+                    <tr>
+                        <td>BIS101</td>
+                        <td>Intro to Info Systems</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">C+</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Intro to Info Systems', 'C+', 77, 27)">عرض</button></td>
+                    </tr>
+                    <tr>
+                        <td>ENG101</td>
+                        <td>English Composition</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">B-</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('English Composition', 'B-', 81, 32)">عرض</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -889,7 +896,9 @@
         <div class="muster-content-container">
             <div class="muster-student-main-card">
                 <div class="muster-avatar-wrapper">
-                    <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:#a0aec0; padding:10px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3.33-8-3.33z"/></svg>
+                    <!-- تم وضع وسم img جاهز، فقط قم بتسمية صورتك الشخصية avatar.jpg وضعها بجانب ملف الـ HTML لتظهر فوراً -->
+                    <img src="avatar.jpg" alt="صورة الطالب" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:#a0aec0; padding:10px; display:none;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3.33-8-3.33z"/></svg>
                     <div class="muster-photo-icon-badge">
                         <svg viewBox="0 0 24 24"><path d="M3 4V1h2v3h3v2H5v3H3V6H0V4h3zm3 6V7h3V4h7l1.83 2H21c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10h3zm7 9c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0-2c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
                     </div>
@@ -941,7 +950,7 @@
 
             <div class="muster-card-white balance-flex-row">
                 <div style="text-align:right;">
-                    <div class="muster-card-title-main" style="color:#9b2c2c;">الموقف المالي الحالي</div>
+                    <div class="muster-card-title-main" style="color:#137333;">الموقف المالي الحالي</div>
                     <div class="muster-card-sub-info">إجمالي المستحقات المتبقية بالجنيه</div>
                 </div>
                 <div class="balance-left-val">0.00<span>EGP</span></div>
@@ -1038,7 +1047,7 @@
         <div class="score-row-card">
             <div class="score-card-right">
                 <div class="score-icon-box" style="background:#e6f4ea;">
-                    <svg viewBox="0 0 24 24" style="fill:#137333;"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                    <svg viewBox="0 0 24 24" style="fill:#107c41;"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
                 </div>
                 <span class="score-title-txt">الامتحان النهائي (Final)</span>
             </div>
@@ -1058,7 +1067,7 @@
         document.getElementById('modalSubjectPercent').innerText = percent + "%";
         document.getElementById('modalSubjectScoreText').innerText = percent + " / 100";
         
-        // حساب درجات تقريبية بناءً على النسبة المئوية لإملاء الخانات
+        // حساب درجات تقريبية
         let midterm = Math.round(percent * 0.4);
         let final = Math.round(percent * 0.6);
         document.getElementById('modalMidtermScore').innerText = midterm + " / 40";
@@ -1066,8 +1075,6 @@
 
         document.getElementById('detailsModal').classList.add('show');
         
-        // تفعيل حركة الدائرة الـ SVG بناءً على الدرجة
-        // محيط الدائرة = 2 * pi * r = 2 * 3.14159 * 70 = 439.82
         setTimeout(() => {
             let circumference = 439.82;
             let strokeDashoffset = circumference - (percent / 100) * circumference;
@@ -1076,7 +1083,6 @@
     }
 
     function closeModal(event, modalId) {
-        // إغلاق النافذة فقط إذا تم الضغط على الخلفية الشفافة وليس محتوى النافذة نفسه
         if (event.target.id === modalId) {
             document.getElementById(modalId).classList.remove('show');
         }
