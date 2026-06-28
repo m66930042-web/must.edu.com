@@ -42,6 +42,7 @@
             flex-direction: column;
             position: relative;
             padding-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
         .top-navbar {
@@ -221,7 +222,7 @@
             fill: #1a202c;
         }
 
-        /* نافذة المودال الكبيرة المقاومة للتمرير وتصميم الـ MUSTER */
+        /* نافذة المودال الكبيرة */
         .modal-mask {
             position: fixed;
             top: 0;
@@ -493,7 +494,6 @@
             font-size: 0.95rem;
             font-weight: 700;
             color: #111;
-            font-family: Arial, sans-serif;
         }
         .muster-card-sub-info {
             font-size: 0.75rem;
@@ -584,7 +584,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* قائمة جهات الاتصال المنسدلة المفتوحة دائماً كالصورة */
+        /* قائمة جهات الاتصال */
         .muster-contacts-expanded-list {
             margin-top: 12px;
             border-top: 1px solid #edf2f7;
@@ -609,7 +609,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* بار البوتوم ناف الصغير السفلي المحاكي للتطبيق */
+        /* بار البوتوم ناف */
         .muster-bottom-app-bar {
             background: #f7fafc;
             border-top: 1px solid #edf2f7;
@@ -652,7 +652,7 @@
             background: #d2e3fc;
         }
 
-        /* تصميم تفاصيل المواد الدائري القديم المحفوظ */
+        /* تصميم تفاصيل المواد الدائري */
         .circle-chart-container {
             position: relative;
             width: 150px;
@@ -731,7 +731,7 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid #eef0f5;
-            text-align: left;
+            text-align: right;
         }
         .score-card-right {
             display: flex;
@@ -753,7 +753,6 @@
             fill: #2b6cb0;
         }
         .score-title-txt {
-            font-family: Arial, sans-serif;
             font-weight: bold;
             font-size: 0.95rem;
             color: #111;
@@ -814,333 +813,275 @@
                     <rect x="94" y="94" width="12" height="24"/>
                     <rect x="110" y="94" width="5" height="24"/>
                     <rect x="119" y="94" width="5" height="24"/>
-                    <rect x="128" y="94" width="5" height="24"/>
-                    <rect x="137" y="94" width="5" height="24"/>
-                    <polygon points="52,90 148,90 100,68"/>
                 </g>
-                <text x="100" y="148" font-family="'Arial Black', Gadget, sans-serif" font-size="20" font-weight="900" fill="#1d2d6b" text-anchor="middle">MUST</text>
             </svg>
         </div>
-        
-        <div class="uni-title">جامعة مصر للعلوم والتكنولوجيا</div>
-        <div class="gpa-label-sub">المعدل التراكمي للطالب/ة</div>
-        <div class="student-name">أحمد هشام علي الشريف</div>
+
+        <h3 class="uni-title">جامعة مصر للعلوم والتكنولوجيا</h3>
+        <p class="gpa-label-sub">نتائج المعدل الدراسي التراكمي</p>
+        <p class="student-name">أحمد هشام علي الشريف</p>
 
         <div class="table-wrapper">
             <table>
                 <thead>
                     <tr>
+                        <th>رمز المادة</th>
                         <th>اسم المادة</th>
-                        <th>عدد الساعات</th>
-                        <th>الدرجة</th>
                         <th>التقدير</th>
-                        <th></th>
+                        <th>التفاصيل</th>
                     </tr>
                 </thead>
-                <tbody id="main-table-rows"></tbody>
+                <tbody>
+                    <tr>
+                        <td>ACC102</td>
+                        <td>Financial Accounting 2</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">B+</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Financial Accounting 2', 'B+', 86, 280)">عرض</button></td>
+                    </tr>
+                    <tr>
+                        <td>MGT101</td>
+                        <td>Principles of Management</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">C</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Principles of Management', 'C', 73, 220)">عرض</button></td>
+                    </tr>
+                    <tr>
+                        <td>ECO101</td>
+                        <td>Macroeconomics</td>
+                        <td style="color: var(--primary-green); font-weight: bold;">B</td>
+                        <td><button class="btn-details" onclick="showSubjectDetails('Macroeconomics', 'B', 81, 260)">عرض</button></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
         <div class="gpa-summary">
-            <h4>معدل الفصل الدراسي الحالي</h4>
-            <div class="gpa-number">2.60</div>
-            <div class="gpa-status">جيد</div>
-            <div class="gpa-text-details">
-                معدلك المقدر لهذا الفصل هو <span>68.75%</span> <br>
-                مع إجمالي <span>15</span> ساعة دراسية
-            </div>
+            <h4>المعدل التراكمي الحالي (CGPA)</h4>
+            <p class="gpa-number">2.33</p>
+            <p class="gpa-status">جيد (Good)</p>
+            <p class="gpa-text-details">لقد اجتزت الساعات الدراسية بنجاح. استمر في التقدم لرفع معدلك الأكاديمي في الفصول القادمة.</p>
         </div>
 
         <div class="footer-logo-area">
-            <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-            <div>المعدل الأكاديمي</div>
+            <svg viewBox="0 0 24 24"><path d="M12 2L1 9l11 7 9-5.73V17h2V9L12 2z"/></svg>
+            <p>نظام الدعم الأكاديمي الذكي © 2026</p>
         </div>
     </div>
 </div>
 
-<!-- بوب اب البروفايل الجديد المطابق تماماً لتطبيق MUSTER الأحدث لعام 2026 -->
-<div class="modal-mask" id="profile-modal">
+<!-- نافذة الملف الشخصي (Profile Modal) بتصميم تطبيق MUSTER الأزرق -->
+<div class="modal-mask" id="profileModal" onclick="closeModal(event, 'profileModal')">
     <div class="modal-body">
-        <!-- شريط هيدر MUSTER العلوي -->
+        <button class="btn-close-modal" onclick="document.getElementById('profileModal').classList.remove('show')">×</button>
+        
         <div class="muster-header">
-            <button class="btn-close-modal" onclick="hideProfileModal()">&times;</button>
             <div class="muster-header-right">
                 <div class="muster-app-logo">
-                    <svg viewBox="0 0 200 200" style="width:100%; height:100%;"><circle cx="100" cy="100" r="90" fill="none" stroke="#1d2d6b" stroke-width="12"/><g fill="#0ba854"><polygon points="50,100 150,100 100,70"/><rect x="55" y="100" width="90" height="30"/></g></svg>
+                    <svg viewBox="0 0 24 24" style="width:20px; height:20px; fill:var(--muster-blue);"><path d="M12 2L1 9l11 7 9-5.73V17h2V9L12 2z"/></svg>
                 </div>
                 <span class="muster-title-app">MUSTER</span>
             </div>
             <div class="muster-bell">
                 <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
-                <span class="muster-badge-count">20</span>
+                <span class="muster-badge-count">2</span>
             </div>
         </div>
 
-        <!-- حاوية الكروت الداخلية المنسقة -->
         <div class="muster-content-container">
-            
-            <!-- كارت الملف الشخصي الرائد -->
             <div class="muster-student-main-card">
                 <div class="muster-avatar-wrapper">
-                    <!-- تم دمج صورتك المقطوعة المأخوذة من لقطة التطبيق بذكاء من خلال رمز SVG يعرض معالم وجه تقريبية أو يمكنك لاحقاً استبدال الـ src برابط مباشر -->
-                    <svg viewBox="0 0 100 110" style="width:100%; height:100%; fill:#4a5568;"><circle cx="50" cy="40" r="22" fill="#cbd5e0"/><path d="M15 95c0-18 15-28 35-28s35 10 35 28v10H15V95z" fill="#cbd5e0"/><circle cx="50" cy="40" r="18" fill="#a0aec0"/><path d="M22 95c3-12 14-20 28-20s25 8 28 20H22z" fill="#2d3748"/></svg>
+                    <svg viewBox="0 0 24 24" style="width:100%; height:100%; fill:#a0aec0; padding:10px;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3.33-8-3.33z"/></svg>
                     <div class="muster-photo-icon-badge">
-                        <svg viewBox="0 0 24 24"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M3 4V1h2v3h3v2H5v3H3V6H0V4h3zm3 6V7h3V4h7l1.83 2H21c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10h3zm7 9c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0-2c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
                     </div>
                 </div>
                 <div class="muster-student-info-text">
-                    <span class="muster-st-name">Ahmed Hesham Ali Elsherif</span>
+                    <span class="muster-st-name">أحمد هشام علي الشريف</span>
                     <span class="muster-st-id">
                         <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1z"/></svg>
-                        ID 200076394
+                        200076394
                     </span>
                     <div class="muster-badges-row">
                         <div class="cgpa-pill">
                             <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            CGPA 2.35
+                            <span>2.33 GPA</span>
                         </div>
-                        <span class="rank-txt">★ Rank: <span>549</span></span>
-                        <span class="class-txt">Class: 2</span>
+                        <span class="rank-txt">الترتيب: <span>N/A</span></span>
+                        <span class="class-txt">2026</span>
                     </div>
                 </div>
             </div>
 
-            <!-- شريط الكلية الأكاديمي المكتوب -->
             <div class="muster-uni-strip">
                 <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-                <span>Misr University for Science & Technology</span>
+                <span>كلية الإدارة والاقتصاد - إدارة الأعمال</span>
             </div>
 
-            <!-- كارت دراسة الأعمال المعتمدة وساعاتها المقضية -->
             <div class="muster-card-white">
                 <div class="muster-card-header-row">
                     <div class="muster-icon-bg-box">
-                        <svg viewBox="0 0 24 24"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.2 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55zM12 2c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm3.3 15.3L12 14.5l-3.29 2.8 1.05-4.42-3.64-3.1 4.54-.39 2.34-4.22 2.34 4.22 4.54.39-3.64 3.1 1.05 4.42z"/></svg>
                     </div>
                     <div>
-                        <div class="muster-card-title-main">UG — BUSINESS</div>
-                        <div class="muster-card-sub-info">Your information & status</div>
+                        <div class="muster-card-title-main">الساعات المعتمدة المسجلة</div>
+                        <div class="muster-card-sub-info">الخطة الأكاديمية الإجمالية: 87 ساعة</div>
                     </div>
                 </div>
                 <div class="muster-hours-numeric-label">
-                    <span>Credit Hours</span>
-                    <strong style="color:#1a365d;">27 / 87</strong>
+                    <span>المكتسبة: 27 ساعة</span>
+                    <span>المتبقية: 60 ساعة</span>
                 </div>
                 <div class="muster-progress-container">
                     <div class="muster-progress-bar-fill"></div>
                 </div>
                 <div class="muster-current-semester-line">
-                    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
-                    <span>Current Semester: <strong>Summer 2026</strong></span>
+                    <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+                    <span>الفصل الدراسي الحالي: <strong>ربيع 2026</strong></span>
                 </div>
             </div>
 
-            <!-- كارت المحفظة المالية المتبقية الماتشينج -->
+            <div class="muster-card-white balance-flex-row">
+                <div style="text-align:right;">
+                    <div class="muster-card-title-main" style="color:#9b2c2c;">الموقف المالي الحالي</div>
+                    <div class="muster-card-sub-info">إجمالي المستحقات المتبقية بالجنيه</div>
+                </div>
+                <div class="balance-left-val">0.00<span>EGP</span></div>
+            </div>
+
             <div class="muster-card-white">
-                <div class="balance-flex-row">
-                    <div class="muster-card-header-row" style="margin-bottom:0;">
+                <div class="muster-card-header-row" style="margin-bottom:0; justify-content: space-between;">
+                    <div style="display:flex; gap:12px; align-items:center;">
                         <div class="muster-icon-bg-box" style="background:#fff5f5;">
-                            <svg viewBox="0 0 24 24" style="fill:#9b2c2c;"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                            <svg viewBox="0 0 24 24" style="fill:#dd6b20;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                         </div>
-                        <div>
-                            <div class="muster-card-title-main" style="font-size:0.85rem; color:#718096; font-weight:normal;">Balance <span style="color:#cbd5e0; font-size:0.8rem;">ⓘ</span></div>
-                            <div class="balance-left-val">0.0<span>EGP</span></div>
-                        </div>
+                        <div class="muster-card-title-main" style="color:#dd6b20;">اختبار تحديد المستوى (ENG)</div>
                     </div>
-                    <button class="btn-muster-details-link">Details ></button>
+                    <div class="placement-orange-badge">اجتياز بالكامل</div>
                 </div>
             </div>
 
-            <!-- كارد اختبار الإنجليزي تحديد المستوى Placement Test -->
-            <div class="muster-card-white">
-                <div class="balance-flex-row" style="margin-bottom: 8px;">
-                    <div class="muster-card-header-row" style="margin-bottom:0;">
-                        <div class="muster-icon-bg-box" style="background:#fffaf0;">
-                            <svg viewBox="0 0 24 24" style="fill:#dd6b20;"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                        </div>
-                        <div style="text-align: right;">
-                            <div class="muster-card-title-main">Placement Test</div>
-                            <div class="muster-card-sub-info" style="font-family:Arial, sans-serif;">38 / 70</div>
-                        </div>
+            <div class="muster-card-white" style="padding-bottom:10px;">
+                <div class="muster-card-header-row" style="margin-bottom:4px;">
+                    <div class="muster-icon-bg-box">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </div>
-                    <span class="placement-orange-badge">ENGL099</span>
+                    <div class="muster-card-title-main">معلومات التواصل الأكاديمي</div>
                 </div>
-                <div class="muster-progress-container" style="margin-bottom:0;">
-                    <div class="muster-progress-bar-fill placement-test-orange-bar"></div>
-                </div>
-            </div>
-
-            <!-- كارد جهات الاتصال المفصلة Expanded القابلة للرؤية بالكامل -->
-            <div class="muster-card-white">
-                <div class="balance-flex-row" style="border-bottom:none; padding-bottom:0;">
-                    <div class="muster-card-header-row" style="margin-bottom:0;">
-                        <div class="muster-icon-bg-box" style="background:#ebf8ff;">
-                            <svg viewBox="0 0 24 24" style="fill:#2b6cb0;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                        </div>
-                        <div class="muster-card-title-main">Contacts</div>
-                    </div>
-                    <svg viewBox="0 0 24 24" style="width:18px; height:18px; fill:var(--muster-blue);"><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/></svg>
-                </div>
-                
-                <!-- البيانات المنسدلة الظاهرة بالكامل -->
                 <div class="muster-contacts-expanded-list">
                     <div class="muster-contact-item-row">
-                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.15 15.15 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        <span class="val-english">+201114220845</span>
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <span>مدينة السادس من أكتوبر، الجيزة، مصر</span>
                     </div>
                     <div class="muster-contact-item-row">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                         <span class="val-english">200076394@must.edu.eg</span>
                     </div>
-                    <div class="muster-contact-item-row">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                        <span>Advisor: Ghada Hasan Tantawy Farag</span>
-                    </div>
-                    <div class="muster-contact-item-row">
-                        <svg viewBox="0 0 24 24"><path d="M12 11.55C9.64 9.35 6.48 8 3 8v11c3.48 0 6.64 1.35 9 3.55 2.36-2.2 5.52-3.55 9-3.55V8c-3.48 0-6.64 1.35-9 3.55z"/></svg>
-                        <span>Major: GENERAL</span>
-                    </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- شريط التصفح السفلي المحاكي لـ واجهة التطبيق التحتية بالكامل -->
         <div class="muster-bottom-app-bar">
-            <div class="bottom-nav-item">
-                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                <span>Home</span>
-            </div>
             <div class="bottom-nav-item active">
                 <div class="bottom-nav-item-circle-bg">
-                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-3.33-8-3.33z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                 </div>
-                <span style="margin-top:-2px;">Profile</span>
+                <span>الرئيسية</span>
             </div>
             <div class="bottom-nav-item">
-                <svg viewBox="0 0 24 24"><path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
-                <span>Services</span>
+                <div class="bottom-nav-item-circle-bg">
+                    <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                </div>
+                <span>المقررات</span>
             </div>
             <div class="bottom-nav-item">
-                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                <span>Community</span>
-            </div>
-            <div class="bottom-nav-item">
-                <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                <span>Settings</span>
+                <div class="bottom-nav-item-circle-bg">
+                    <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <span>المحفظة</span>
             </div>
         </div>
     </div>
 </div>
 
-<!-- بوب اب تفاصيل المواد القديم المحفوظ دون مساس -->
-<div class="modal-mask" id="popup-modal">
-    <div class="modal-body" style="background:#f4f6f9; padding:20px;">
-        <button class="btn-close-modal" onclick="hideDetailsPopup()" style="color:#4a5568; background:#e2e8f0;">&times;</button>
-        <div class="modal-header-text" style="text-align: right; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
-            <h3 id="lbl-course-code" style="font-family: Arial, sans-serif; font-size:1.2rem; color:#111; font-weight:bold;">ACC102</h3>
-            <p id="lbl-course-hours" style="font-family: Arial, sans-serif; font-size:0.9rem; color:#777;">3 Credit Hours</p>
-        </div>
+<!-- نافذة تفاصيل المادة الدائرية (Subject Details Modal) -->
+<div class="modal-mask" id="detailsModal" onclick="closeModal(event, 'detailsModal')">
+    <div class="modal-body" style="background:#ffffff; padding:25px 20px;">
+        <button class="btn-close-modal" style="color:#000000; background:rgba(0,0,0,0.05);" onclick="document.getElementById('detailsModal').classList.remove('show')">×</button>
+        
+        <h3 id="modalSubjectTitle" style="font-size:1.2rem; margin-bottom:15px; margin-top:10px; color:#111827;">اسم المادة</h3>
+        
         <div class="circle-chart-container">
-            <svg class="circle-chart">
-                <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
-                <circle class="circle-fill-bar" id="circle-bar-element" cx="75" cy="75" r="70"></circle>
+            <svg class="circle-chart" viewBox="0 0 150 150">
+                <circle class="circle-bg" cx="75" cy="75" r="70" />
+                <circle class="circle-fill-bar" id="modalCircleFill" cx="75" cy="75" r="70" />
             </svg>
             <div class="circle-inner-text">
-                <span class="grade" id="lbl-grade">B+</span>
-                <span class="percent" id="lbl-percentage">81%</span>
+                <span class="grade" id="modalSubjectGrade">A</span>
+                <span class="percent" id="modalSubjectPercent">0%</span>
             </div>
         </div>
+
         <div class="overall-capsule">
-            <p>Overall Score</p>
-            <div id="val-overall">121 / 150</div>
+            <p>مجموع الدرجات الإجمالي</p>
+            <div id="modalSubjectScoreText">0 / 100</div>
         </div>
+
         <div class="score-row-card">
             <div class="score-card-right">
-                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-                <span class="score-title-txt">MT</span>
+                <div class="score-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                </div>
+                <span class="score-title-txt">أعمال السنة والـ Midterm</span>
             </div>
-            <span class="score-badge-value blue-badge" id="val-mt">29 / 40</span>
+            <span class="score-badge-value blue-badge" id="modalMidtermScore">0 / 40</span>
         </div>
+
         <div class="score-row-card">
             <div class="score-card-right">
-                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25z"/></svg></div>
-                <span class="score-title-txt">CW</span>
+                <div class="score-icon-box" style="background:#e6f4ea;">
+                    <svg viewBox="0 0 24 24" style="fill:#137333;"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                </div>
+                <span class="score-title-txt">الامتحان النهائي (Final)</span>
             </div>
-            <span class="score-badge-value green-badge" id="val-cw">17 / 20</span>
-        </div>
-        <div class="score-row-card">
-            <div class="score-card-right">
-                <div class="score-icon-box"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg></div>
-                <span class="score-title-txt">FIN</span>
-            </div>
-            <span class="score-badge-value blue-badge" id="val-final">75 / 90</span>
+            <span class="score-badge-value green-badge" id="modalFinalScore">0 / 60</span>
         </div>
     </div>
 </div>
 
 <script>
-    const studentCourses = [
-        { code: "BUS103", hours: 3, grade: "A", status: "ناجح", percentage: 94, scores: { overall: "141 / 150", mt: "38 / 40", cw: "19 / 20", final: "84 / 90" } },
-        { code: "BUS102", hours: 3, grade: "-A", status: "ناجح", percentage: 86, scores: { overall: "129 / 150", mt: "34 / 40", cw: "18 / 20", final: "77 / 90" } },
-        { code: "ACC102", hours: 3, grade: "+B", status: "ناجح", percentage: 81, scores: { overall: "121 / 150", mt: "29 / 40", cw: "17 / 20", final: "75 / 90" } },
-        { code: "ECO101", hours: 3, grade: "D", status: "ناجح", percentage: 60, scores: { overall: "90 / 150", mt: "22 / 40", cw: "13 / 20", final: "55 / 90" } },
-        { code: "MATH101", hours: 3, grade: "D", status: "ناجح", percentage: 62, scores: { overall: "93 / 150", mt: "24 / 40", cw: "11 / 20", final: "58 / 90" } }
-    ];
-
-    function buildTable() {
-        const tableBody = document.getElementById('main-table-rows');
-        tableBody.innerHTML = '';
-        studentCourses.forEach((item, idx) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-family: Arial, sans-serif; font-weight: bold; color: #111827;">${item.code}</td>
-                <td style="color: #4b5563;">${item.hours}</td>
-                <td style="font-family: Arial, sans-serif; font-weight: 600; color: #111827;">${item.grade}</td>
-                <td style="color: #111827;">${item.status}</td>
-                <td><button class="btn-details" onclick="showDetailsPopup(${idx})">details</button></td>
-            `;
-            tableBody.appendChild(tr);
-        });
-    }
-
     function showProfileModal() {
-        document.getElementById('profile-modal').classList.add('show');
-    }
-    function hideProfileModal() {
-        document.getElementById('profile-modal').classList.remove('show');
+        document.getElementById('profileModal').classList.add('show');
     }
 
-    function showDetailsPopup(idx) {
-        const data = studentCourses[idx];
-        document.getElementById('lbl-course-code').innerText = data.code;
-        document.getElementById('lbl-course-hours').innerText = `${data.hours} Credit Hours`;
-        document.getElementById('lbl-grade').innerText = data.grade;
-        document.getElementById('lbl-percentage').innerText = `${data.percentage}%`;
-        document.getElementById('val-overall').innerText = data.scores.overall;
-        document.getElementById('val-mt').innerText = data.scores.mt;
-        document.getElementById('val-cw').innerText = data.scores.cw;
-        document.getElementById('val-final').innerText = data.scores.final;
+    function showSubjectDetails(name, grade, percent, offsetValue) {
+        document.getElementById('modalSubjectTitle').innerText = name;
+        document.getElementById('modalSubjectGrade').innerText = grade;
+        document.getElementById('modalSubjectPercent').innerText = percent + "%";
+        document.getElementById('modalSubjectScoreText').innerText = percent + " / 100";
+        
+        // حساب درجات تقريبية بناءً على النسبة المئوية لإملاء الخانات
+        let midterm = Math.round(percent * 0.4);
+        let final = Math.round(percent * 0.6);
+        document.getElementById('modalMidtermScore').innerText = midterm + " / 40";
+        document.getElementById('modalFinalScore').innerText = final + " / 60";
 
-        const r = 70;
-        const circumference = 2 * Math.PI * r;
-        const offset = circumference - (data.percentage / 100) * circumference;
-        const bar = document.getElementById('circle-bar-element');
-        bar.style.strokeDasharray = circumference;
-        bar.style.strokeDashoffset = circumference;
-
-        document.getElementById('popup-modal').classList.add('show');
-        setTimeout(() => { bar.style.strokeDashoffset = offset; }, 50);
+        document.getElementById('detailsModal').classList.add('show');
+        
+        // تفعيل حركة الدائرة الـ SVG بناءً على الدرجة
+        // محيط الدائرة = 2 * pi * r = 2 * 3.14159 * 70 = 439.82
+        setTimeout(() => {
+            let circumference = 439.82;
+            let strokeDashoffset = circumference - (percent / 100) * circumference;
+            document.getElementById('modalCircleFill').style.strokeDashoffset = strokeDashoffset;
+        }, 100);
     }
 
-    function hideDetailsPopup() { document.getElementById('popup-modal').classList.remove('show'); }
-    
-    window.onclick = function(e) { 
-        if (e.target == document.getElementById('popup-modal')) { hideDetailsPopup(); }
-        if (e.target == document.getElementById('profile-modal')) { hideProfileModal(); }
+    function closeModal(event, modalId) {
+        // إغلاق النافذة فقط إذا تم الضغط على الخلفية الشفافة وليس محتوى النافذة نفسه
+        if (event.target.id === modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
     }
-    
-    window.onload = buildTable;
 </script>
+
 </body>
 </html>
